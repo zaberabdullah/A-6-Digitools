@@ -1,7 +1,7 @@
 import React from "react";
 import { LuShoppingCart } from "react-icons/lu";
 
-const Navbar = () => {
+const Navbar = ({cartCount, setIsCartView}) => {
   return (
     <div className="container mx-auto flex justify-between items-center my-4">
       <div >
@@ -17,9 +17,9 @@ const Navbar = () => {
       </div>
 
       <div className="flex items-center gap-5">
-        <div className="cursor-pointer relative">
+        <div onClick={() => setIsCartView(true)} className="cursor-pointer relative">
             <LuShoppingCart size={24} />
-            <span className="absolute -top-2 -right-2 bg-[#7C3AED] text-white text-[12px] font-bold px-1.5 rounded-full border border-white leading-none">0</span>
+            <span className="absolute -top-2 -right-2 bg-[#7C3AED] text-white text-[12px] font-bold px-1.5 rounded-full border border-white leading-none">{cartCount}</span>
         </div>
         <button className="cursor-pointer">Login</button>
         <button className="btn btn-primary rounded-full cursor-pointer">Get Started</button>
