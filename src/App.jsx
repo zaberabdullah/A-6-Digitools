@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import Banner from "./components/Banner/banner";
+import Banner from "./components/Banner/Banner";
 import Navbar from "./components/Navbar/navbar";
 import Stats from "./components/Stats/Stats";
 import ProductSection from "./components/ProductSection";
