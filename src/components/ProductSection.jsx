@@ -1,14 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { TiDelete } from "react-icons/ti";
 
-const ProductSection = ({
-  handleAddToCart,
-  handleDelete,
-  handleClearCart,
-  cartItems,
-  isCartView,
-  setIsCartView,
-}) => {
+const ProductSection = ({ handleAddToCart, handleDelete, handleClearCart, cartItems, isCartView, setIsCartView }) => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -17,11 +10,32 @@ const ProductSection = ({
       .then((data) => setProducts(data));
   }, []);
 
-  const  handleCheckout = () => {
-    handleClearCart(); 
-    setIsCartView(false); 
+  const handleCheckout = () => {
+    handleClearCart();
+    setIsCartView(false);
   };
-  
+
+  const steps = [
+    {
+      id: "01",
+      title: "Create Account",
+      description: "Sign up for free in seconds. No credit card required to get started.",
+      icon: "👤",
+    },
+    {
+      id: "02",
+      title: "Choose Products",
+      description: "Browse our catalog and select the tools that fit your needs.",
+      icon: "📦",
+    },
+    {
+      id: "03",
+      title: "Start Creating",
+      description: "Download and start using your premium tools immediately.",
+      icon: "🚀",
+    },
+  ];
+
   return (
     <section className="container mx-auto px-4 lg:px-16 py-12">
       <div className="text-center p-5">
@@ -140,12 +154,39 @@ const ProductSection = ({
               </div>
             </div>
           ) : (
-            <div className="text-center py-20 bg-gray-50 rounded-[3rem] border-2 border-dashed border-gray-200">
+            <div className="text-center py-20 rounded-[3rem] border-2 border-dashed border-gray-200">
               <p className="text-xl font-medium">Your cart is empty!</p>
             </div>
           )}
         </div>
       )}
+
+      <div className="text-center pt-20">
+        <h1 className="text-5xl font-extrabold">Get Started in 3 Steps</h1>
+        <p className="text-[#627382] pt-4">
+          Start using premium digital tools in minutes, not hours.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-10">
+        {steps.map((step) => (
+          <div
+            key={step.id}
+            className="relative bg-white border border-gray-100 p-10 rounded-[2.5rem] text-center hover:shadow-xl"
+          >
+            <div className="absolute -top-3 -right-3 w-10 h-10 bg-[#7C3AED] text-white flex items-center justify-center rounded-full font-bold text-sm shadow-lg border-4 border-white">
+              {step.id}
+            </div>
+
+            <div className="w-24 h-24 bg-purple-50 rounded-full flex items-center justify-center mx-auto mb-8 group-hover:bg-purple-100">
+              <span className="text-4xl">{step.icon}</span>
+            </div>
+
+            <h3 className="text-2xl font-bold mb-4 text-[#111827]">{step.title}</h3>
+            <p className="text-gray-500 text-sm">{step.description}</p>
+          </div>
+        ))}
+      </div>
     </section>
   );
 };
