@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { TiDelete } from "react-icons/ti";
 
-const ProductSection = ({ handleAddToCart, handleDelete, handleClearCart, cartItems, isCartView, setIsCartView }) => {
+const ProductSection = ({
+  handleAddToCart,
+  handleDelete,
+  handleClearCart,
+  cartItems,
+  isCartView,
+  setIsCartView,
+}) => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -10,12 +17,20 @@ const ProductSection = ({ handleAddToCart, handleDelete, handleClearCart, cartIt
       .then((data) => setProducts(data));
   }, []);
 
+  const  handleCheckout = () => {
+    handleClearCart(); 
+    setIsCartView(false); 
+  };
+  
   return (
     <section className="container mx-auto px-4 lg:px-16 py-12">
-        <div className="text-center p-5">
-            <h1 className="text-5xl font-extrabold">Premium Digital Tools</h1>
-            <p className="text-[#627382] pt-4">Choose from our curated collection of premium digital products designed to <br /> boost your productivity and creativity.</p>
-        </div>
+      <div className="text-center p-5">
+        <h1 className="text-5xl font-extrabold">Premium Digital Tools</h1>
+        <p className="text-[#627382] pt-4">
+          Choose from our curated collection of premium digital products designed to <br /> boost your productivity and
+          creativity.
+        </p>
+      </div>
       <div className="flex justify-center gap-4 mb-10">
         <button
           onClick={() => setIsCartView(false)}
@@ -107,6 +122,22 @@ const ProductSection = ({ handleAddToCart, handleDelete, handleClearCart, cartIt
                   </button>
                 </div>
               ))}
+
+              <div className="mt-10 border-t border-gray-200 pt-8">
+                <div className="flex justify-between items-center mb-8 px-4">
+                  <span className="text-[16px] font-medium">Total:</span>
+                  <span className="text-4xl font-extrabold text-[#111827]">
+                    ${cartItems.reduce((acc, item) => acc + item.price, 0)}
+                  </span>
+                </div>
+
+                <button
+                  onClick={handleCheckout}
+                  className="w-full bg-purple-600 text-white py-2 rounded-3xl font-medium text-[16px] hover:bg-[#6017d6] transition-all shadow-xl"
+                >
+                  Proceed To Checkout
+                </button>
+              </div>
             </div>
           ) : (
             <div className="text-center py-20 bg-gray-50 rounded-[3rem] border-2 border-dashed border-gray-200">
