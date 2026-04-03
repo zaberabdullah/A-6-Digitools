@@ -7,6 +7,8 @@ import ProductSection from "./components/ProductSection";
 import Pricing from "./components/pricing";
 import Workflow from "./components/Workflow";
 import Footer from "./components/Footer";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -16,24 +18,27 @@ function App() {
     const isExist = cart.find((item) => item.id === product.id);
     if (!isExist) {
       setCart([...cart, product]);
+      toast.success("Item added to cart!")
     } else {
-      alert("Already in cart!");
+      toast.error("Item already in cart!");
     }
   };
 
   const handleDelete = (id) => {
     const remaining = cart.filter((item) => item.id !== id);
     setCart(remaining);
+     toast.warn("Item deleted!")
   };
 
   const handleClearCart = () => {
     setCart([]);
+    toast.info("Payment Successful!");
   };
 
   return (
     <>
       <Navbar cartCount={cart.length} setIsCartView={setIsCartView}></Navbar>
-
+      <ToastContainer></ToastContainer>
       <Banner></Banner>
       <Stats></Stats>
       <ProductSection
