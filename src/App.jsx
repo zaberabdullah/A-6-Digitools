@@ -4,6 +4,8 @@ import Banner from "./components/Banner/banner";
 import Navbar from "./components/Navbar/navbar";
 import Stats from "./components/Stats/Stats";
 import ProductSection from "./components/ProductSection";
+import Pricing from "./components/pricing";
+import Workflow from "./components/Workflow";
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -40,6 +42,8 @@ function App() {
         isCartView={isCartView}
         setIsCartView={setIsCartView}
       ></ProductSection>
+      <Pricing></Pricing>
+      <Workflow></Workflow>
     </>
   );
 }
