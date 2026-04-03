@@ -6,6 +6,7 @@ import Stats from "./components/Stats/Stats";
 import ProductSection from "./components/ProductSection";
 import Pricing from "./components/pricing";
 import Workflow from "./components/Workflow";
+import Footer from "./components/Footer";
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -32,6 +33,7 @@ function App() {
   return (
     <>
       <Navbar cartCount={cart.length} setIsCartView={setIsCartView}></Navbar>
+
       <Banner></Banner>
       <Stats></Stats>
       <ProductSection
@@ -44,6 +46,7 @@ function App() {
       ></ProductSection>
       <Pricing></Pricing>
       <Workflow></Workflow>
+      <Footer></Footer>
     </>
   );
 }
